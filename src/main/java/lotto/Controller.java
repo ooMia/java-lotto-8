@@ -55,11 +55,10 @@ class ControllerImpl implements Controller {
         console.printLine();
 
         console.printLine("보너스 번호를 입력해 주세요.");
-        WinnerLotto winnerLotto = handler.tryUntilValid(() -> {
+        this.winner = handler.tryUntilValid(() -> {
             var number = console.readInt();
             return new WinnerLotto(lotto, number);
         });
-        this.winner = winnerLotto;
         console.printLine();
     }
 
