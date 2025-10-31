@@ -6,6 +6,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoRule.NumberLengthRule;
 import lotto.LottoRule.NumberRangeRule;
+import lotto.util.Console;
 
 public class Vendor {
 
@@ -32,6 +33,11 @@ public class Vendor {
 
     WinningStats result(WinnerLotto winner) {
         return new WinningStats(this.lottos, winner);
+    }
+
+    public void printLotto(Console console) {
+        console.printLine(String.format("%d개를 구매했습니다.", lottos.size()));
+        this.lottos.forEach(console::printLine);
     }
 
 }

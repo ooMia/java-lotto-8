@@ -18,7 +18,6 @@ enum LottoProblem {
 
     IllegalArgumentException exception() {
         var message = String.format("%s %s", ERROR_PREFIX, this.name());
-        System.out.println(message);
         return new IllegalArgumentException(message);
     }
 

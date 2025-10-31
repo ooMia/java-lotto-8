@@ -20,15 +20,22 @@ public class WinningStats {
         lottos.stream()
                 .map(lotto -> lotto.toPrize(winner))
                 .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
-        this.profitRate = totalProfit() * TO_PERCENTAGE / (lottos.size() * Vendor.LOTTO_PRICE);
+        this.profitRate = profitRate(totalProfit(), lottos.size());
     }
 
-    private double totalProfit() {
+    private long totalProfit() {
         long totalProfit = 0;
         for (var e : prizeCount.entrySet()) {
             totalProfit += (long) e.getKey().money * e.getValue();
         }
         return totalProfit;
+    }
+
+    private static double profitRate(long totalProfit, int numberLottos) {
+        if (numberLottos == 0) {
+            return 0.;
+        }
+        return (double) totalProfit * TO_PERCENTAGE / (numberLottos * Vendor.LOTTO_PRICE);
     }
 
     @Override
