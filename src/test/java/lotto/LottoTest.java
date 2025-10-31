@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @Test
@@ -36,6 +37,39 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
                 .hasMessageContaining("NUMBER_OUT_OF_RANGE");
+    }
+
+    @Test
+    void 로또_2등_당첨_경우() {
+        Lotto purchase = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinnerLotto winner = new WinnerLotto(new Lotto(List.of(1, 2, 3, 4, 5, 45)), 6);
+
+        Prize expected = Prize.MATCH_FIVE_WITH_BONUS;
+        Prize actual = purchase.toPrize(winner);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void 로또_3개_당첨_경우() {
+        Lotto purchase = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinnerLotto winner = new WinnerLotto(new Lotto(List.of(1, 2, 3, 43, 44, 45)), 6);
+
+        Prize expected = Prize.MATCH_THREE;
+        Prize actual = purchase.toPrize(winner);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void 로또_미당첨_경우() {
+        Lotto purchase = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinnerLotto winner = new WinnerLotto(new Lotto(List.of(1, 2, 42, 43, 44, 45)), 6);
+
+        Prize expected = Prize.MATCH_NONE;
+        Prize actual = purchase.toPrize(winner);
+
+        assertEquals(expected, actual);
     }
 
 }

@@ -1,9 +1,10 @@
 package lotto;
 
-public class WinnerLotto {
 
-    private final Lotto lotto;
-    private final int bonusNumber;
+// TODO consider changing to record
+public class WinnerLotto {
+    public Lotto lotto;
+    public int bonusNumber;
 
     public WinnerLotto(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;
@@ -12,9 +13,9 @@ public class WinnerLotto {
     }
 
     private void validate() {
-        LottoRule.NumberRangeRule.DEFAULT.validate(this.bonusNumber);
-        if (lotto.isContain(this.bonusNumber)) {
+        if (this.lotto.isContain(this.bonusNumber)) {
             throw LottoProblem.DUPLITCATE_NUMBER.exception();
         }
+        LottoRule.NumberRangeRule.DEFAULT.validate(this.bonusNumber);
     }
 }
