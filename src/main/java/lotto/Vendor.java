@@ -1,9 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoRule.NumberLengthRule;
 import lotto.LottoRule.NumberRangeRule;
 import lotto.util.Console;

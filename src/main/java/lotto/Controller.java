@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.List;
-
 import lotto.util.Console;
 import lotto.util.ExceptionHandler;
 import lotto.util.Tokenizer;
