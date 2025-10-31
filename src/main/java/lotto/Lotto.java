@@ -15,7 +15,7 @@ public class Lotto {
         numbers.stream().forEach(LottoRule.NumberRangeRule.DEFAULT::validate);
     }
 
-    protected boolean isContain(int number) {
+    boolean isContain(int number) {
         return this.numbers.contains(number);
     }
 }
