@@ -10,7 +10,7 @@ import lotto.LottoRule.NumberRangeRule;
 public class Vendor {
 
     public static final int LOTTO_PRICE = 1_000;
-    
+
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Vendor(int money) {
@@ -18,7 +18,7 @@ public class Vendor {
             throw LottoProblem.MOD_PRICE_NOT_ZERO.exception();
         }
         int nLottos = money / LOTTO_PRICE;
-        for (var iter = 0; iter < nLottos; ++iter){
+        for (var iter = 0; iter < nLottos; ++iter) {
             this.lottos.add(generateRandomLotto());
         }
     }
@@ -28,6 +28,10 @@ public class Vendor {
         int endInclusive = NumberRangeRule.DEFAULT.maxInclusive();
         int count = NumberLengthRule.DEFAULT.uniquesExactly();
         return new Lotto(Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count));
+    }
+
+    WinningStats result(WinnerLotto winner) {
+        return new WinningStats(this.lottos, winner);
     }
 
 }

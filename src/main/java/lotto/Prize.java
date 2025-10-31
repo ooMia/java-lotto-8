@@ -11,9 +11,9 @@ public enum Prize {
     MATCH_THREE(3, false, 5_000),
     MATCH_NONE(0, false, 0);
 
-    private int matches;
-    private boolean isBonusMatch;
-    private int money;
+    private final int matches;
+    private final boolean isBonusMatch;
+    public final int money;
 
     Prize(int matches, boolean isBonusMatch, int money) {
         this.matches = matches;
