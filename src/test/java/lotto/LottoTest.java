@@ -72,4 +72,11 @@ class LottoTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void testToString() {
+        Lotto purchase = new Lotto(List.of(8, 21, 23, 41, 42, 43));
+        String expected = "[8, 21, 23, 41, 42, 43]";
+        String actual = purchase.toString();
+        assertEquals(expected, actual);
+    }
 }

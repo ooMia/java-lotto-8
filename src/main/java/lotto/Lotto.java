@@ -26,4 +26,9 @@ public class Lotto {
         boolean isBonusMatch = targetNumbers.contains(winner.bonusNumber);
         return Prize.of(matches, isBonusMatch);
     }
+
+    @Override
+    public String toString() {
+        return this.numbers.toString();
+    }
 }
