@@ -1,6 +1,9 @@
 package lotto;
 
-enum LottoProblem {
+import lotto.util.BaseProblem;
+import lotto.util.Global;
+
+enum LottoProblem implements BaseProblem {
     PARSE_LONG_FAILED,
     PARSE_INTEGER_FAILED,
 
@@ -14,13 +17,14 @@ enum LottoProblem {
     DUPLITCATE_NUMBER,
     NUMBERS_LENGTH_NOT_SIX, NOT_ENOUGH_MONEY;
 
-    // TODO 이거 전부 ExceptionHandler로 처리하기
+    @Override
+    public String message() {
+        return this.name();
+    }
 
-    private static final String ERROR_PREFIX = "[ERROR]";
-
-    IllegalArgumentException exception() {
-        var message = String.format("%s %s", ERROR_PREFIX, this.name());
-        return new IllegalArgumentException(message);
+    @Override
+    public RuntimeException exception() {
+        return Global.EXCEPTION_HANDLER.exception(this);
     }
 
 }

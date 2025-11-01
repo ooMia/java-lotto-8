@@ -11,14 +11,11 @@ public class ExceptionHandler {
         this.errorPrefix = errorPrefix;
     }
 
-    public Handler of(BaseProblem cause) {
-        return new Handler(this.console, cause);
-    }
-
     public <T> T throwIfInvalid(Supplier<T> supplier) throws IllegalArgumentException {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
+            console.printLine(errorPrefix + e.getMessage());
             throw new IllegalArgumentException(e);
         }
     }
@@ -28,31 +25,12 @@ public class ExceptionHandler {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                console.printLine(e.getMessage());
+                console.printLine(errorPrefix + e.getMessage());
             }
         }
     }
 
-    public class Handler {
-        private final Console console;
-        private final BaseProblem cause;
-
-        public Handler(Console console, BaseProblem cause) {
-            this.console = console;
-            this.cause = cause;
-        }
-
-        public Handler log() {
-            this.console.printLine(errorPrefix + cause.toString());
-            return this;
-        }
-
-        public void raiseException(Throwable e) throws IllegalArgumentException {
-            throw new IllegalArgumentException(cause.toString(), e);
-        }
-
-        public void raiseException() throws IllegalArgumentException {
-            throw new IllegalArgumentException(cause.toString());
-        }
+    public IllegalArgumentException exception(BaseProblem cause) {
+        return new IllegalArgumentException(errorPrefix + cause.toString());
     }
 }

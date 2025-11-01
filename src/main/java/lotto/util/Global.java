@@ -1,8 +1,4 @@
-package lotto;
-
-import lotto.util.Console;
-import lotto.util.ExceptionHandler;
-import lotto.util.Tokenizer;
+package lotto.util;
 
 public final class Global {
 

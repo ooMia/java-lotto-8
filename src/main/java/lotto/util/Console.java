@@ -6,7 +6,7 @@ public interface Console {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
-            throw BaseProblem.PARSE_INTEGER_FAILED.exception(e);
+            throw new IllegalArgumentException(BaseProblemImpl.PARSE_INTEGER_FAILED.message(), e);
         }
     }
 
@@ -16,7 +16,7 @@ public interface Console {
         try {
             return Long.parseLong(readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException(BaseProblemImpl.PARSE_LONG_FAILED.message(), e);
         }
     }
 

@@ -39,6 +39,6 @@
   - **지불하는 금액이 0원인 경우**
     **고민해봤는데 `1,000원 단위로 입력`하라는 서술은 1000의 배수를 의미하는 것 같다**
   - 지불하는 금액이 단위 금액의 정수배인지
-- [ ] 모든 예외 ExceptionHandler로 통일
+- [x] 모든 예외 ExceptionHandler로 통일
   - 예외 상황에 `IllegalArgumentException` 반환
   - `[ERROR]`로 시작하는 에러 메시지 출력
