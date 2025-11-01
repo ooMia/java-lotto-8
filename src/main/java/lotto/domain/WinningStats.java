@@ -45,16 +45,10 @@ class WinningStats {
     public String toString() {
         var sb = new StringBuilder();
         for (var e : prizeCount.entrySet()) {
-            var key = e.getKey();
-            // TODO 키 빼버리고 생략하기 #L26
-            if (key == Prize.MATCH_NONE) {
-                continue;
-            }
-            sb.append(key.toString());
-            sb.append(String.format(" - %d개", e.getValue()));
+            sb.append(StringTemplate.statPrizeCount(e.getKey(), e.getValue()));
             sb.append(System.lineSeparator());
         }
-        sb.append(String.format(Locale.KOREAN, "총 수익률은 %.1f%%입니다.", this.profitRate));
+        sb.append(StringTemplate.statProfitRate(profitRate));
         return sb.toString();
     }
 }
