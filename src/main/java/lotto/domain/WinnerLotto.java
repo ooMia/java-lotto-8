@@ -23,6 +23,6 @@ public final class WinnerLotto {
     Prize toPrize(Lotto guess) {
         int matches = this.lotto.countMatches(guess);
         boolean isBonusMatch = guess.contains(bonusNumber);
-        return Prize.of(matches, isBonusMatch);
+        return Prize.ofResult(matches, isBonusMatch);
     }
 }

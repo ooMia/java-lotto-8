@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import java.util.Locale;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 enum Prize {
 
@@ -12,9 +13,18 @@ enum Prize {
     MATCH_THREE(3, false, 5_000),
     MATCH_NONE(0, false, 0);
 
+    private static final Map<Integer, Prize> cache = new HashMap<>();
+
+    static {
+        for (var prize : Prize.values()) {
+            var key = keyHashCode(prize.matches, prize.isBonusMatch);
+            cache.put(key, prize);
+        }
+    }
+
     public final int money;
-    private final int matches;
-    private final boolean isBonusMatch;
+    final int matches;
+    final boolean isBonusMatch;
 
     Prize(int matches, boolean isBonusMatch, int money) {
         this.matches = matches;
@@ -22,21 +32,21 @@ enum Prize {
         this.money = money;
     }
 
-    static Prize of(int matches, boolean isBonusMatch) {
+    static Prize ofResult(int matches, boolean isBonusMatch) {
         MatchRangeRule.DEFAULT.validate(matches);
-        for (var prize : Prize.values()) {
-            if (prize.equals(matches, isBonusMatch)) {
-                return prize;
-            }
-        }
-        return MATCH_NONE;
+        var key = keyHashCode(matches, isBonusMatch);
+        return cache.getOrDefault(key, MATCH_NONE);
     }
 
-    boolean equals(int matches, boolean isBonusMatch) {
-        if (this.isBonusMatch) {
-            return isBonusMatch && this.matches == matches;
+    static int keyHashCode(int matches, boolean isBonusMatch) {
+        if (matches == Prize.MATCH_FIVE_WITH_BONUS.matches && isBonusMatch) {
+            return Prize.values().length + matches;
         }
-        return this.matches == matches;
+        return matches;
+    }
+
+    static Comparator<Prize> comparator() {
+        return Comparator.comparingInt(p0 -> p0.money);
     }
 
     @Override
@@ -52,9 +62,5 @@ enum Prize {
                 throw LottoProblem.NUMBER_OUT_OF_RANGE.exception();
             }
         }
-    }
-
-    static Comparator<Prize> comparator() {
-        return (p0, p1) -> Integer.compare(p0.money, p1.money);
     }
 }
