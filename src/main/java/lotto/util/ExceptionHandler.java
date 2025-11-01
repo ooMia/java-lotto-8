@@ -16,7 +16,7 @@ public class ExceptionHandler {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
-            console.printLine(errorPrefix + e.getMessage());
+            console.printLine(e.getMessage());
             throw new IllegalArgumentException(e);
         }
     }
@@ -26,12 +26,16 @@ public class ExceptionHandler {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                console.printLine(errorPrefix + e.getMessage());
+                console.printLine(e.getMessage());
             }
         }
     }
 
     public IllegalArgumentException exception(BaseProblem cause) {
         return new IllegalArgumentException(errorPrefix + cause.toString());
+    }
+
+    public IllegalArgumentException exception(BaseProblem cause, Throwable e) {
+        return new IllegalArgumentException(errorPrefix + cause.toString(), e);
     }
 }
