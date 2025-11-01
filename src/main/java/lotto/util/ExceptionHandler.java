@@ -48,7 +48,11 @@ public class ExceptionHandler {
         }
 
         public void raiseException(Throwable e) throws IllegalArgumentException {
-            throw cause.exception();
+            throw new IllegalArgumentException(cause.toString(), e);
+        }
+
+        public void raiseException() throws IllegalArgumentException {
+            throw new IllegalArgumentException(cause.toString());
         }
     }
 }

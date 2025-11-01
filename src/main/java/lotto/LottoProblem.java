@@ -14,6 +14,8 @@ enum LottoProblem {
     DUPLITCATE_NUMBER,
     NUMBERS_LENGTH_NOT_SIX;
 
+    // TODO 이거 전부 ExceptionHandler로 처리하기
+
     private static final String ERROR_PREFIX = "[ERROR]";
 
     IllegalArgumentException exception() {

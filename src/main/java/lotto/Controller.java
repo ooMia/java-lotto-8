@@ -5,6 +5,9 @@ import lotto.util.Console;
 import lotto.util.ExceptionHandler;
 import lotto.util.Tokenizer;
 
+// TODO 불필요하게 인터페이스가 있는 것처럼 보인다.
+// 어차피 다형성 필요 없으니까 그냥 구현체로 바꾸고
+// 필요하면 전역 IoC 컨테이너에서 받아오는 식으로 편의성 확보해도 되고
 public interface Controller {
 
     void buyLottos();
@@ -21,6 +24,9 @@ class ControllerImpl implements Controller {
     private final ExceptionHandler handler;
     private final Tokenizer tokenizer;
 
+    // TODO controller가 상태를 가지고 있는건 부자연스러워보여서
+    // Domain 수준에서 서비스 하나 만들고
+    // 걔 생성 후에 거기서 다 관리해도 되고?
     private Vendor vendor;
     private WinnerLotto winner;
 
