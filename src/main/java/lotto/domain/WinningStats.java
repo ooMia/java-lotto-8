@@ -9,10 +9,7 @@ class WinningStats {
 
     private static final int TO_PERCENTAGE = 100;
 
-    // reversed natural order
-    // TODO arg0 이런거 좀 더 깔끔하게 만들 수 없을까?
-    // 솔직히 람다라 더 깔끔하기 어려울 것 같긴한데
-    private final Map<Prize, Integer> prizeCount = new TreeMap<>((arg0, arg1) -> arg1.compareTo(arg0));
+    private final SortedMap<Prize, Integer> prizeCount = new TreeMap<>(Prize.comparator().reversed());
     private final double profitRate;
 
     WinningStats(List<Lotto> lottos, WinnerLotto winner) {

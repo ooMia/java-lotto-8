@@ -48,3 +48,6 @@
 
 - [x] `WinnerLotto.toPrize()`
   - 이에 대한 파생으로 `Lotto.countMatches()` 생성
+- [ ] 서비스 레이어 안정화
+- [ ] `domain.StringTemplate` 문자열 정리
+- [x] `Prize.comparator` Enum ordinal에 의존하지 않는 정렬 기준

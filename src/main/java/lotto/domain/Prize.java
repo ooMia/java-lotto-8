@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Locale;
+import java.util.Comparator;
 
 // TODO 뭔가 Vendor한테 종속시켜야하나 싶기도 하고
 // 근데 딱히 모두한테 공개된 정보라고 생각해서, 필드도 다 공개해버리고 싶긴함 << 일단 상금은 공개
@@ -65,5 +66,9 @@ enum Prize {
                 throw LottoProblem.NUMBER_OUT_OF_RANGE.exception();
             }
         }
+    }
+
+    static Comparator<Prize> comparator() {
+        return (p0, p1) -> Integer.compare(p0.money, p1.money);
     }
 }
