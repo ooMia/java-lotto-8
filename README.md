@@ -43,3 +43,8 @@
   - 예외 상황에 `IllegalArgumentException` 반환
   - `[ERROR]`로 시작하는 에러 메시지 출력
 - [x] `domain` 패키지로 모듈화
+
+## Domain 리팩토링
+
+- [x] `WinnerLotto.toPrize()`
+  - 이에 대한 파생으로 `Lotto.countMatches()` 생성

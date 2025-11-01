@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,17 +18,16 @@ public class Lotto {
         numbers.stream().forEach(LottoRule.NumberRangeRule.DEFAULT::validate);
     }
 
-    boolean isContain(int number) {
+    boolean contains(int number) {
         return this.numbers.contains(number);
     }
 
-    // TODO 더 낮은 수준으로 존재하는 Lotto보다
-    // WinnerLotto가 이 메서드를 가지고 있는게 더 합당해보임
-    Prize toPrize(WinnerLotto winner) {
-        Set<Integer> targetNumbers = Set.copyOf(this.numbers);
-        int matches = (int) winner.lotto.numbers.stream().filter(targetNumbers::contains).count();
-        boolean isBonusMatch = targetNumbers.contains(winner.bonusNumber);
-        return Prize.of(matches, isBonusMatch);
+    int countMatches(Lotto lotto) {
+        int base = this.numbers.size() + lotto.numbers.size();
+        Set<Integer> uniques = new HashSet<>();
+        uniques.addAll(this.numbers);
+        uniques.addAll(lotto.numbers);
+        return base - uniques.size();
     }
 
     @Override

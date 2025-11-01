@@ -20,7 +20,7 @@ class WinningStats {
             prizeCount.put(values, 0);
         }
         lottos.stream()
-                .map(lotto -> lotto.toPrize(winner))
+                .map(lotto -> winner.toPrize(lotto))
                 .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
         this.profitRate = profitRate(totalProfit(), lottos.size());
         // TODO 생성자에서 완성하고 이후에 특별히 수정이 없으니까 NONE에 해당하는 키를 빼버리면 이후 로직을 간결하게 가져갈 수 있다.
