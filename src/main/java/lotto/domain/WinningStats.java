@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.SortedMap;
 import java.util.TreeMap;
 
 class WinningStats {
@@ -17,30 +16,26 @@ class WinningStats {
             prizeCount.put(values, 0);
         }
         lottos.stream()
-                .map(lotto -> winner.toPrize(lotto))
+                .map(winner::toPrize)
                 .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
         this.profitRate = profitRate(totalProfit(), lottos.size());
-        // TODO 생성자에서 완성하고 이후에 특별히 수정이 없으니까 NONE에 해당하는 키를 빼버리면 이후 로직을 간결하게 가져갈 수 있다.
+        prizeCount.remove(Prize.MATCH_NONE);
     }
 
-    // TODO profitRate을 좀 더 깔끔하게 계산할 수 있는 방법 없을까? 
-    // 일단 totalProfit을 double로 만들어 그 다음에 뒤에를 나눠 그러면 좀 더 깔끔해질지도
-    private long totalProfit() {
-        long totalProfit = 0;
-        for (var e : prizeCount.entrySet()) {
-            totalProfit += (long) e.getKey().money * e.getValue();
+    private double totalProfit() {
+        return prizeCount.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().money * entry.getValue())
+                .sum();
+    }
+
+    private static double profitRate(double totalProfit, int numberLottos) {
+        if (numberLottos <= 0 || Service.LOTTO_PRICE <= 0) {
+            // TODO 이것도 enum에 묶어 처리할 수 있도록 util 개편
+            throw new IllegalStateException("[ERROR] 로또의 가격과 개수는 모두 양수이어야 한다.");
         }
-        return totalProfit;
+        return totalProfit * TO_PERCENTAGE / (numberLottos * Service.LOTTO_PRICE);
     }
 
-    private static double profitRate(long totalProfit, int numberLottos) {
-        if (numberLottos == 0) {
-            return 0.;
-        }
-        return (double) totalProfit * TO_PERCENTAGE / (numberLottos * Service.LOTTO_PRICE);
-    }
-
-    // TODO 얘도 StringTemplate으로 주입
     @Override
     public String toString() {
         var sb = new StringBuilder();

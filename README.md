@@ -51,3 +51,4 @@
 - [ ] 서비스 레이어 안정화
 - [x] `domain.StringTemplate` 문자열 정리
 - [x] `Prize.comparator` Enum ordinal에 의존하지 않는 정렬 기준
+- [x] `WinningStats` profitRate 계산 과정
