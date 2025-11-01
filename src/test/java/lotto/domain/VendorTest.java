@@ -17,7 +17,7 @@ class VendorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { 1001, 1999, 2001 })
+    @ValueSource(ints = {1001, 1999, 2001})
     void 단위_금액_아니면_예외(int money) {
         assertThatThrownBy(() -> vendor.buyLotto(money))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -26,7 +26,7 @@ class VendorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { -1, 0, 1, 999 })
+    @ValueSource(ints = {-1, 0, 1, 999})
     void 금액_없으면_예외(int money) {
         assertThatThrownBy(() -> vendor.buyLotto(money))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -35,7 +35,7 @@ class VendorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = { 1000, 10000, 100000 })
+    @ValueSource(ints = {1000, 10000, 100000})
     void 단위_금액이면_성공(int money) {
         assertDoesNotThrow(() -> vendor.buyLotto(money));
     }

@@ -3,9 +3,9 @@ package lotto.domain;
 // TODO consider changing to record
 // TODO to package private
 public final class WinnerLotto {
-    
-    private Lotto lotto;
-    private int bonusNumber;
+
+    private final Lotto lotto;
+    private final int bonusNumber;
 
     public WinnerLotto(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;

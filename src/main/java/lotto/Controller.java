@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.List;
-
 import lotto.domain.Lotto;
 import lotto.domain.Service;
 import lotto.domain.WinnerLotto;

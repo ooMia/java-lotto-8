@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  * 단일 문자 구분자 패턴에 따라 문자열을 토큰화하는 유틸리티 클래스
  */
 public final class Tokenizer {
-    
+
     private final Pattern pattern;
 
     public Tokenizer(char delimiter) {

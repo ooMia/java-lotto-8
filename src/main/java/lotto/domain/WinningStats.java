@@ -30,8 +30,7 @@ class WinningStats {
 
     private static double profitRate(double totalProfit, int numberLottos) {
         if (numberLottos <= 0 || Service.LOTTO_PRICE <= 0) {
-            // TODO 이것도 enum에 묶어 처리할 수 있도록 util 개편
-            throw new IllegalStateException("[ERROR] 로또의 가격과 개수는 모두 양수이어야 한다.");
+            throw LottoProblem.PROFIT_DIV_ZERO.exception();
         }
         return totalProfit * TO_PERCENTAGE / (numberLottos * Service.LOTTO_PRICE);
     }
