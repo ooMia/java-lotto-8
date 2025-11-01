@@ -7,7 +7,7 @@ import lotto.LottoRule.NumberLengthRule;
 import lotto.LottoRule.NumberRangeRule;
 import lotto.util.Console;
 
-public class Vendor {
+class Vendor {
 
     public static final int LOTTO_PRICE = 1_000;
 
@@ -16,6 +16,9 @@ public class Vendor {
     private final List<Lotto> lottos = new ArrayList<>();
 
     public Vendor(int money) {
+        if (money < LOTTO_PRICE) {
+            throw LottoProblem.NOT_ENOUGH_MONEY.exception();
+        }
         if (money % LOTTO_PRICE != 0) {
             throw LottoProblem.MOD_PRICE_NOT_ZERO.exception();
         }

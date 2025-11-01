@@ -12,7 +12,7 @@ enum LottoProblem {
 
     // 로또할 때도 쓰고, 보너스 번호에도 사용 가능
     DUPLITCATE_NUMBER,
-    NUMBERS_LENGTH_NOT_SIX;
+    NUMBERS_LENGTH_NOT_SIX, NOT_ENOUGH_MONEY;
 
     // TODO 이거 전부 ExceptionHandler로 처리하기
 

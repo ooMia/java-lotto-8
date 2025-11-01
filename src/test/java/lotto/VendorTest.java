@@ -1,21 +1,33 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class VendorTest {
+class VendorTest {
 
     @ParameterizedTest
-    @ValueSource(ints = {-1, 1, 999, 1001})
+    @ValueSource(ints = { 1001, 1999, 2001 })
     void 단위_금액_아니면_예외(int money) {
-        assertThrows(IllegalArgumentException.class, () -> new Vendor(money));
+        assertThatThrownBy(() -> new Vendor(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("MOD_PRICE_NOT_ZERO");
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1000, 10000, 100000})
+    @ValueSource(ints = { -1, 0, 1, 999 })
+    void 금액_없으면_예외(int money) {
+        assertThatThrownBy(() -> new Vendor(money))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageStartingWith("[ERROR]")
+                .hasMessageContaining("NOT_ENOUGH_MONEY");
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = { 1000, 10000, 100000 })
     void 단위_금액이면_성공(int money) {
         assertDoesNotThrow(() -> new Vendor(money));
     }
