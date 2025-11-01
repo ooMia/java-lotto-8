@@ -6,7 +6,7 @@ public interface Console {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
-            throw Global.EXCEPTION_HANDLER.exception(BaseProblemImpl.PARSE_INTEGER_FAILED, e);
+            throw Global.EXCEPTION_HANDLER.exception(ConsoleProblem.PARSE_INTEGER_FAILED, e);
         }
     }
 
@@ -16,7 +16,7 @@ public interface Console {
         try {
             return Long.parseLong(readLine());
         } catch (NumberFormatException e) {
-            throw Global.EXCEPTION_HANDLER.exception(BaseProblemImpl.PARSE_LONG_FAILED, e);
+            throw Global.EXCEPTION_HANDLER.exception(ConsoleProblem.PARSE_LONG_FAILED, e);
         }
     }
 
