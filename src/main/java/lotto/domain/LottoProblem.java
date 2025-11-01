@@ -7,7 +7,7 @@ enum LottoProblem implements BaseProblem {
 
     NUMBER_OUT_OF_RANGE,
     MOD_PRICE_NOT_ZERO,
-    DUPLITCATE_NUMBER,
+    DUPLICATE_NUMBER,
     NUMBERS_LENGTH_NOT_SIX,
     NOT_ENOUGH_MONEY,
     PROFIT_DIV_ZERO;

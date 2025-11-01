@@ -56,3 +56,6 @@
   - lotto constructor visiblity
   - validation for field with instance method
   - clean up unused enums
+- [x] `Prize` visibility
+- [x] `Lotto` shortened forEach
+- [x] `LottoProblem` typo

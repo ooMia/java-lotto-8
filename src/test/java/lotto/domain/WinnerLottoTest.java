@@ -26,7 +26,7 @@ class WinnerLottoTest {
         assertThatThrownBy(() -> new WinnerLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), 6))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageStartingWith("[ERROR]")
-                .hasMessageContaining("DUPLITCATE_NUMBER");
+                .hasMessageContaining("DUPLICATE_NUMBER");
     }
 
     // TODO WinnerLotto 쪽으로 마이그레이션

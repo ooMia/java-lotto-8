@@ -16,7 +16,7 @@ public final class WinnerLotto {
     private void validate() {
         LottoRule.NumberRangeRule.DEFAULT.validate(this.bonusNumber);
         if (this.lotto.contains(this.bonusNumber)) {
-            throw LottoProblem.DUPLITCATE_NUMBER.exception();
+            throw LottoProblem.DUPLICATE_NUMBER.exception();
         }
     }
 

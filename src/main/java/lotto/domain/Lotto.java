@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate() {
         LottoRule.NumberLengthRule.DEFAULT.validate(this.numbers);
-        numbers.stream().forEach(LottoRule.NumberRangeRule.DEFAULT::validate);
+        numbers.forEach(LottoRule.NumberRangeRule.DEFAULT::validate);
     }
 
     boolean contains(int number) {

@@ -4,7 +4,7 @@ import lotto.util.Global;
 
 public class Application {
     public static void main(String[] args) {
-        var history = new ControllerImpl(
+        var history = new Controller(
                 Global.CONSOLE,
                 Global.EXCEPTION_HANDLER,
                 Global.TOKENIZER);

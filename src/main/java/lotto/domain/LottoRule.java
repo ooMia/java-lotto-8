@@ -18,7 +18,7 @@ final class LottoRule {
 
             Set<Integer> uniques = Set.copyOf(numbers);
             if (uniques.size() != uniquesExactly) {
-                throw LottoProblem.DUPLITCATE_NUMBER.exception();
+                throw LottoProblem.DUPLICATE_NUMBER.exception();
             }
         }
     }

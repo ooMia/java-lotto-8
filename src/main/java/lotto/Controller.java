@@ -8,40 +8,22 @@ import lotto.util.Console;
 import lotto.util.ExceptionHandler;
 import lotto.util.Tokenizer;
 
-// TODO 불필요하게 인터페이스가 있는 것처럼 보인다.
-// 어차피 다형성 필요 없으니까 그냥 구현체로 바꾸고
-// 필요하면 전역 IoC 컨테이너에서 받아오는 식으로 편의성 확보해도 되고
-public interface Controller {
-
-    void buyLottos();
-
-    void fetchWinner();
-
-    void printStats();
-
-}
-
-class ControllerImpl implements Controller {
-
+class Controller {
     private final Console console;
     private final ExceptionHandler handler;
     private final Tokenizer tokenizer;
 
-    // TODO controller가 상태를 모두 가지고 있는건 부자연스러워보이는데
-    // 막상 출력 생각하면 받긴 해야할 것 같고
-    // Domain 수준에서 서비스 하나 만들고
-    // 걔 생성 후에 거기서 다 관리해도 되고?
+    // TODO 상태 간소화
     private final Service service = new Service();
     private List<Lotto> lottos;
     private WinnerLotto winner;
 
-    public ControllerImpl(Console console, ExceptionHandler handler, Tokenizer tokenizer) {
+    public Controller(Console console, ExceptionHandler handler, Tokenizer tokenizer) {
         this.console = console;
         this.handler = handler;
         this.tokenizer = tokenizer;
     }
 
-    @Override
     public void buyLottos() {
 
         console.printLine("구입금액을 입력해 주세요.");
@@ -56,7 +38,6 @@ class ControllerImpl implements Controller {
         console.printLine();
     }
 
-    @Override
     public void fetchWinner() {
         console.printLine("당첨 번호를 입력해 주세요.");
         Lotto lotto = handler.tryUntilValid(() -> {
@@ -74,7 +55,6 @@ class ControllerImpl implements Controller {
         console.printLine();
     }
 
-    @Override
     public void printStats() {
         console.printLine("당첨 통계");
         console.printLine("---");
