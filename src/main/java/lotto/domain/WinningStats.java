@@ -40,7 +40,7 @@ class WinningStats {
         if (numberLottos == 0) {
             return 0.;
         }
-        return (double) totalProfit * TO_PERCENTAGE / (numberLottos * Vendor.LOTTO_PRICE);
+        return (double) totalProfit * TO_PERCENTAGE / (numberLottos * Service.LOTTO_PRICE);
     }
 
     // TODO 얘도 StringTemplate으로 주입

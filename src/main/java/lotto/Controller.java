@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 
 import lotto.domain.Lotto;
-import lotto.domain.Vendor;
+import lotto.domain.Service;
 import lotto.domain.WinnerLotto;
 import lotto.util.Console;
 import lotto.util.ExceptionHandler;
@@ -28,10 +28,12 @@ class ControllerImpl implements Controller {
     private final ExceptionHandler handler;
     private final Tokenizer tokenizer;
 
-    // TODO controller가 상태를 가지고 있는건 부자연스러워보여서
+    // TODO controller가 상태를 모두 가지고 있는건 부자연스러워보이는데
+    // 막상 출력 생각하면 받긴 해야할 것 같고
     // Domain 수준에서 서비스 하나 만들고
     // 걔 생성 후에 거기서 다 관리해도 되고?
-    private Vendor vendor;
+    private final Service service = new Service();
+    private List<Lotto> lottos;
     private WinnerLotto winner;
 
     public ControllerImpl(Console console, ExceptionHandler handler, Tokenizer tokenizer) {
@@ -44,13 +46,14 @@ class ControllerImpl implements Controller {
     public void buyLottos() {
 
         console.printLine("구입금액을 입력해 주세요.");
-        this.vendor = handler.tryUntilValid(() -> {
+        this.lottos = handler.tryUntilValid(() -> {
             var money = console.readInt();
-            return new Vendor(money);
+            return service.buyLottos(money);
         });
         console.printLine();
 
-        this.vendor.printLotto(console);
+        console.printLine(String.format("%d개를 구매했습니다.", this.lottos.size()));
+        this.lottos.forEach(console::printLine);
         console.printLine();
     }
 
@@ -60,14 +63,14 @@ class ControllerImpl implements Controller {
         Lotto lotto = handler.tryUntilValid(() -> {
             var csvNumbers = console.readLine();
             List<Integer> numbers = this.tokenizer.split(csvNumbers, Integer::parseInt);
-            return new Lotto(numbers);
+            return service.prepareWinnerLotto(numbers);
         });
         console.printLine();
 
         console.printLine("보너스 번호를 입력해 주세요.");
         this.winner = handler.tryUntilValid(() -> {
             var number = console.readInt();
-            return new WinnerLotto(lotto, number);
+            return service.completeWinnerLotto(lotto, number);
         });
         console.printLine();
     }
@@ -76,7 +79,7 @@ class ControllerImpl implements Controller {
     public void printStats() {
         console.printLine("당첨 통계");
         console.printLine("---");
-        console.printLine(this.vendor.result(winner));
+        console.printLine(service.toStatistics(this.lottos, this.winner));
     }
 
 }
