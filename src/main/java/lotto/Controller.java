@@ -1,6 +1,10 @@
 package lotto;
 
 import java.util.List;
+
+import lotto.domain.Lotto;
+import lotto.domain.Vendor;
+import lotto.domain.WinnerLotto;
 import lotto.util.Console;
 import lotto.util.ExceptionHandler;
 import lotto.util.Tokenizer;

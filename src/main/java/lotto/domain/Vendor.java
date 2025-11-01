@@ -1,13 +1,15 @@
-package lotto;
+package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoRule.NumberLengthRule;
-import lotto.LottoRule.NumberRangeRule;
+
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.LottoRule.NumberLengthRule;
+import lotto.domain.LottoRule.NumberRangeRule;
 import lotto.util.Console;
 
-class Vendor {
+// TODO to package-private
+public final class Vendor {
 
     public static final int LOTTO_PRICE = 1_000;
 
@@ -36,7 +38,8 @@ class Vendor {
         return new Lotto(Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count));
     }
 
-    WinningStats result(WinnerLotto winner) {
+    // TODO to package-private
+    public WinningStats result(WinnerLotto winner) {
         return new WinningStats(this.lottos, winner);
     }
 

@@ -42,3 +42,4 @@
 - [x] 모든 예외 ExceptionHandler로 통일
   - 예외 상황에 `IllegalArgumentException` 반환
   - `[ERROR]`로 시작하는 에러 메시지 출력
+- [x] `domain` 패키지로 모듈화

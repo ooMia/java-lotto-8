@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain;
 
 // TODO consider changing to record
-public class WinnerLotto {
+// TODO to package private
+public final class WinnerLotto {
     // TODO 이거 왜 public임?
     // 아 지금은 Lotto가 참조하고 있어서 그렇고
     // 나중에 toPrize 메서드 들여오면 수정하면 됨

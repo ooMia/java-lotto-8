@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PrizeTest {
+class PrizeTest {
 
     @Nested
     class PrizeOfCases {
@@ -53,7 +53,7 @@ public class PrizeTest {
         }
 
         @ParameterizedTest
-        @ValueSource(ints = {0, 1, 2})
+        @ValueSource(ints = { 0, 1, 2 })
         void testToString_noPrize(int matches) {
             var prizeWithBonus = Prize.of(matches, true);
             assertEquals(Prize.MATCH_NONE, prizeWithBonus);
@@ -63,7 +63,7 @@ public class PrizeTest {
         }
 
         @ParameterizedTest
-        @ValueSource(ints = {-1, 7})
+        @ValueSource(ints = { -1, 7 })
         void testToString_exception(int matches) {
             assertThatThrownBy(() -> Prize.of(matches, true))
                     .isInstanceOf(IllegalArgumentException.class)

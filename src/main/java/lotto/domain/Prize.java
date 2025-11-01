@@ -1,10 +1,10 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Locale;
 
 // TODO 뭔가 Vendor한테 종속시켜야하나 싶기도 하고
 // 근데 딱히 모두한테 공개된 정보라고 생각해서, 필드도 다 공개해버리고 싶긴함 << 일단 상금은 공개
-public enum Prize {
+enum Prize {
 
     MATCH_SIX(6, false, 2_000_000_000),
     MATCH_FIVE_WITH_BONUS(5, true, 30_000_000),

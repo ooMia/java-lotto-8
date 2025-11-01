@@ -1,11 +1,12 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
-public class WinnerLottoTest {
+class WinnerLottoTest {
 
     @Test
     void 보너스_번호_범위에_벗어나면_예외가_발생한다() {

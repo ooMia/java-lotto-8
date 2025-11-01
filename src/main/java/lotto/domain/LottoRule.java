@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import java.util.Set;
 
-public class LottoRule {
+final class LottoRule {
+    private LottoRule() {
+    }
 
     record NumberLengthRule(int uniquesExactly) {
         static final NumberLengthRule DEFAULT = new NumberLengthRule(6);

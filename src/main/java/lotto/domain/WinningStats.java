@@ -1,11 +1,11 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class WinningStats {
+class WinningStats {
 
     private static final int TO_PERCENTAGE = 100;
 
@@ -15,7 +15,7 @@ public class WinningStats {
     private final Map<Prize, Integer> prizeCount = new TreeMap<>((arg0, arg1) -> arg1.compareTo(arg0));
     private final double profitRate;
 
-    public WinningStats(List<Lotto> lottos, WinnerLotto winner) {
+    WinningStats(List<Lotto> lottos, WinnerLotto winner) {
         for (Prize values : Prize.values()) {
             prizeCount.put(values, 0);
         }
