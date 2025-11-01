@@ -3,6 +3,7 @@ package lotto.util;
 import java.util.function.Supplier;
 
 public class ExceptionHandler {
+
     private final String errorPrefix;
     private final Console console;
 

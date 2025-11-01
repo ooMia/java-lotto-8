@@ -4,6 +4,7 @@ import lotto.util.BaseProblem;
 import lotto.util.Global;
 
 enum LottoProblem implements BaseProblem {
+    
     PARSE_LONG_FAILED,
     PARSE_INTEGER_FAILED,
 
@@ -26,5 +27,4 @@ enum LottoProblem implements BaseProblem {
     public RuntimeException exception() {
         return Global.EXCEPTION_HANDLER.exception(this);
     }
-
 }

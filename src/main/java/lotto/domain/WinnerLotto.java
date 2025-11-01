@@ -3,6 +3,7 @@ package lotto.domain;
 // TODO consider changing to record
 // TODO to package private
 public final class WinnerLotto {
+    
     private Lotto lotto;
     private int bonusNumber;
 

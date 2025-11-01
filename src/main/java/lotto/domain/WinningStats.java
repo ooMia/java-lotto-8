@@ -60,5 +60,4 @@ class WinningStats {
         sb.append(String.format(Locale.KOREAN, "총 수익률은 %.1f%%입니다.", this.profitRate));
         return sb.toString();
     }
-
 }

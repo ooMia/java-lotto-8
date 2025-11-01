@@ -52,5 +52,4 @@ public final class Vendor {
         console.printLine(String.format("%d개를 구매했습니다.", lottos.size()));
         this.lottos.forEach(console::printLine);
     }
-
 }

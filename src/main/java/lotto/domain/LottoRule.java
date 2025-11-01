@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 final class LottoRule {
+
     private LottoRule() {
     }
 
@@ -31,5 +32,4 @@ final class LottoRule {
             }
         }
     }
-
 }
