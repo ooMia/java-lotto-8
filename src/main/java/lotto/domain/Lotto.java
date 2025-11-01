@@ -4,17 +4,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-// TODO consider changing to package private
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
+    Lotto(List<Integer> numbers) {
         this.numbers = List.copyOf(numbers);
+        validate();
     }
 
-    private static void validate(List<Integer> numbers) {
-        LottoRule.NumberLengthRule.DEFAULT.validate(numbers);
+    private void validate() {
+        LottoRule.NumberLengthRule.DEFAULT.validate(this.numbers);
         numbers.stream().forEach(LottoRule.NumberRangeRule.DEFAULT::validate);
     }
 
