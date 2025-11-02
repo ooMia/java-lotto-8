@@ -1,6 +1,8 @@
 package lotto.util;
 
 public interface Global {
+    Global INSTANCE = new Global() {};
+
     Console CONSOLE = camp.nextstep.edu.missionutils.Console::readLine;
 
     String ERROR_PREFIX = "[ERROR] ";

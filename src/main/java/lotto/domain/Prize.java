@@ -51,7 +51,7 @@ enum Prize {
 
     @Override
     public String toString() {
-        return Presentation.instance.prize(matches, this == MATCH_FIVE_WITH_BONUS, money);
+        return Presentation.INSTANCE.prize(matches, this == MATCH_FIVE_WITH_BONUS, money);
     }
 
     record MatchRangeRule(int minInclusive, int maxInclusive) {

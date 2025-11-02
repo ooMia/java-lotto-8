@@ -9,8 +9,7 @@ import lotto.util.Tokenizer;
 
 public class Application {
     public static void main(String[] args) {
-        Global global = new Global() {};
-        new Scenario(global).run();
+        new Scenario(Global.INSTANCE).run();
     }
 
     static class Scenario implements Runnable {

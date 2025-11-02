@@ -39,10 +39,10 @@ class WinningStats {
     public String toString() {
         var sb = new StringBuilder();
         for (var e : prizeCount.entrySet()) {
-            sb.append(Presentation.instance.statPrizeCount(e.getKey(), e.getValue()));
+            sb.append(Presentation.INSTANCE.statPrizeCount(e.getKey(), e.getValue()));
             sb.append(System.lineSeparator());
         }
-        sb.append(Presentation.instance.statProfitRate(profitRate));
+        sb.append(Presentation.INSTANCE.statProfitRate(profitRate));
         return sb.toString();
     }
 }
