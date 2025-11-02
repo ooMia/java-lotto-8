@@ -9,9 +9,4 @@ public enum ConsoleProblem implements BaseProblem {
     public String message() {
         return this.name();
     }
-
-    @Override
-    public RuntimeException exception() {
-        return Global.EXCEPTION_HANDLER.exception(this);
-    }
 }

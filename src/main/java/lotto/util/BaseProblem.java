@@ -3,5 +3,7 @@ package lotto.util;
 public interface BaseProblem {
     String message();
 
-    RuntimeException exception();
+    default RuntimeException exception() {
+        return Global.EXCEPTION_HANDLER.exception(this);
+    }
 }
