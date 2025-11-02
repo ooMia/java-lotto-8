@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import lotto.TestUtil;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -65,14 +65,10 @@ class PrizeTest {
         @ParameterizedTest
         @ValueSource(ints = {-1, 7})
         void testToString_exception(int matches) {
-            assertThatThrownBy(() -> Prize.ofResult(matches, true))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageStartingWith("[ERROR]")
+            TestUtil.GLOBAL.assertThatThrownBy(() -> Prize.ofResult(matches, true))
                     .hasMessageContaining("NUMBER_OUT_OF_RANGE");
 
-            assertThatThrownBy(() -> Prize.ofResult(matches, false))
-                    .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageStartingWith("[ERROR]")
+            TestUtil.GLOBAL.assertThatThrownBy(() -> Prize.ofResult(matches, false))
                     .hasMessageContaining("NUMBER_OUT_OF_RANGE");
         }
 

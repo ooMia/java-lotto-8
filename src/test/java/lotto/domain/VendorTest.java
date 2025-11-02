@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import lotto.TestUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,18 +19,14 @@ class VendorTest {
     @ParameterizedTest
     @ValueSource(ints = {1001, 1999, 2001})
     void 단위_금액_아니면_예외(int money) {
-        assertThatThrownBy(() -> vendor.buyLotto(money))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]")
+        TestUtil.GLOBAL.assertThatThrownBy(() -> vendor.buyLotto(money))
                 .hasMessageContaining("MOD_PRICE_NOT_ZERO");
     }
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 1, 999})
     void 금액_없으면_예외(int money) {
-        assertThatThrownBy(() -> vendor.buyLotto(money))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageStartingWith("[ERROR]")
+        TestUtil.GLOBAL.assertThatThrownBy(() -> vendor.buyLotto(money))
                 .hasMessageContaining("NOT_ENOUGH_MONEY");
     }
 
