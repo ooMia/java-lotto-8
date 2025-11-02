@@ -22,17 +22,17 @@ class WinningStats {
         prizeCount.remove(Prize.MATCH_NONE);
     }
 
-    private double totalProfit() {
-        return prizeCount.entrySet().stream()
-                .mapToDouble(entry -> entry.getKey().money * entry.getValue())
-                .sum();
-    }
-
     private static double profitRate(double totalProfit, int numberTickets) {
         if (numberTickets <= 0 || LOTTO_PRICE <= 0) {
             throw LottoProblem.PROFIT_DIV_ZERO.exception();
         }
         return totalProfit * TO_PERCENTAGE / (numberTickets * LOTTO_PRICE);
+    }
+
+    private double totalProfit() {
+        return prizeCount.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().money * entry.getValue())
+                .sum();
     }
 
     @Override

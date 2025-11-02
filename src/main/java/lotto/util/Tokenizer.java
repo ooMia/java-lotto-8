@@ -17,6 +17,12 @@ public final class Tokenizer {
         this.pattern = Pattern.compile(String.valueOf(delimiter));
     }
 
+    private static void validate(String input, Function<String, ?> converter) {
+        if (input == null || converter == null) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public List<String> split(String input) {
         return split(input, String::intern);
     }
@@ -41,11 +47,5 @@ public final class Tokenizer {
         return Arrays.stream(tokens)
                 .map(String::trim)
                 .filter(s -> !s.isEmpty());
-    }
-
-    private static void validate(String input, Function<String, ?> converter) {
-        if (input == null || converter == null) {
-            throw new IllegalArgumentException();
-        }
     }
 }

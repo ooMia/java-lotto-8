@@ -7,6 +7,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class WinningStatsTest {
+    private static Lotto lotto(int... numbers) {
+        List<Integer> input = Arrays.stream(numbers).boxed().toList();
+        return new Lotto(input);
+    }
+
     @Test
     void testToString() {
 
@@ -33,10 +38,5 @@ class WinningStatsTest {
                 "총 수익률은 62.5%입니다.");
 
         assertThat(stats.toString()).contains(expected);
-    }
-
-    private static Lotto lotto(int... numbers) {
-        List<Integer> input = Arrays.stream(numbers).boxed().toList();
-        return new Lotto(input);
     }
 }

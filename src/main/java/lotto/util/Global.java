@@ -1,7 +1,8 @@
 package lotto.util;
 
 public interface Global {
-    Global INSTANCE = new Global() {};
+    Global INSTANCE = new Global() {
+    };
 
     Console CONSOLE = camp.nextstep.edu.missionutils.Console::readLine;
 
@@ -11,15 +12,15 @@ public interface Global {
     char DEFAULT_DELIMITER = ',';
     Tokenizer TOKENIZER = new Tokenizer(DEFAULT_DELIMITER);
 
-    default Console console(){
+    default Console console() {
         return CONSOLE;
     }
 
-    default ExceptionHandler exceptionHandler(){
+    default ExceptionHandler exceptionHandler() {
         return EXCEPTION_HANDLER;
     }
 
-    default Tokenizer tokenizer(){
+    default Tokenizer tokenizer() {
         return TOKENIZER;
     }
 }

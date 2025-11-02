@@ -22,7 +22,7 @@ final class Vendor {
         }
     }
 
-    private List<Lotto> limitedOfferOnly(long money){
+    private List<Lotto> limitedOfferOnly(long money) {
         try {
             int number = Math.toIntExact(money / LOTTO_PRICE);
             var res = new ArrayList<Lotto>(number);
