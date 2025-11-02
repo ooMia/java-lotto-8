@@ -32,10 +32,10 @@ public class ExceptionHandler {
     }
 
     public IllegalArgumentException exception(BaseProblem cause) {
-        return new IllegalArgumentException(errorPrefix + cause.toString());
+        return new IllegalArgumentException(errorPrefix + cause.message());
     }
 
     public IllegalArgumentException exception(BaseProblem cause, Throwable e) {
-        return new IllegalArgumentException(errorPrefix + cause.toString(), e);
+        return new IllegalArgumentException(errorPrefix + cause.message(), e);
     }
 }
