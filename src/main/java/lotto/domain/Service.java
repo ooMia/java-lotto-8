@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 
+// TODO 이거 너무 의미없는 클래스처럼 보여
+// 뭔가 이거다! 싶은 방식으로 개선해볼 수 없을까?
 public class Service {
     public static final int LOTTO_PRICE = 1_000;
 

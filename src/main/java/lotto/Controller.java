@@ -13,7 +13,9 @@ class Controller {
     private final ExceptionHandler handler;
     private final Tokenizer tokenizer;
 
-    // TODO 상태 간소화
+    // TODO 내가 생각하던 건 이런 방식이 아니었던 것 같아
+    // 이런 도메인과 관련된 부분들은 별도의 클래스에서 다루었으면 좋겠고
+    // 고수준의 레이어에서는 간단하게 그것을 활용만 하면 좋겠어
     private final Service service = new Service();
     private List<Lotto> lottos;
     private WinnerLotto winner;

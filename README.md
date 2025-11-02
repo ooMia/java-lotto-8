@@ -20,7 +20,6 @@
 
 - [x] 문서 정리
   - 각각의 스코프에 해당 클래스의 기능 정리
-- [ ] 리팩토링 TODO 노트
 - [x] 전역 변수
   - 구분자 쉼표: 번호는 쉼표(`,`)를 기준으로 구분한다.
   - 오류 접두사: `[ERROR]`
@@ -59,3 +58,12 @@
 - [x] `Prize` visibility
 - [x] `Lotto` shortened forEach
 - [x] `LottoProblem` typo
+
+- [ ] 리팩토링 TODO 노트
+  - DTO.in DTO.out을 도입해서 도메인 출력을 정의한다.
+    - Money를 줘서 LottoReceipt를 발급받고
+    - LottoReceipt랑 WinnerLotto를 주면 PrizeReceipt를 발급받고
+    - PrizeReceipt를 주면 WinningStats를 얻을 수 있는거죠
+    - 각각은 내부 StringTemplate에 의해 가변적인 형태가 나타날 수 있지만,
+      그 제어권은 Controller에게는 없어요
+    - 요청한 밖의 사람은 그냥 단순히 문자열로 만들어 출력하는 게 전부죠
