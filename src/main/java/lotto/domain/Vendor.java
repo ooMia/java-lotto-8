@@ -8,12 +8,15 @@ import java.util.Set;
 final class Vendor {
     private static final int LOTTO_PRICE = LotteryManager.LOTTO_PRICE;
 
-    List<Lotto> buyLotto(long money) {
+    private Vendor() {
+    }
+
+    static List<Lotto> buyLotto(long money) {
         validate(money);
         return limitedOfferOnly(money);
     }
 
-    private void validate(long money) {
+    private static void validate(long money) {
         if (money < LOTTO_PRICE) {
             throw LottoProblem.NOT_ENOUGH_MONEY.exception();
         }
@@ -22,20 +25,20 @@ final class Vendor {
         }
     }
 
-    private List<Lotto> limitedOfferOnly(long money) {
+    private static List<Lotto> limitedOfferOnly(long money) {
         try {
-            int number = Math.toIntExact(money / LOTTO_PRICE);
-            var res = new ArrayList<Lotto>(number);
-            while (res.size() < number) {
-                res.add(generateRandomLotto());
+            var size = Math.toIntExact(money / LOTTO_PRICE);
+            var container = new ArrayList<Lotto>(size);
+            while (container.size() < size) {
+                container.add(generateRandomLotto());
             }
-            return res;
+            return container;
         } catch (ArithmeticException | OutOfMemoryError e) {
             throw LottoProblem.REQUEST_EXCEED_MEMORY_LIMITATION.exception();
         }
     }
 
-    private Lotto generateRandomLotto() {
+    private static Lotto generateRandomLotto() {
         int startInclusive = NumberRangeRule.DEFAULT.minInclusive();
         int endInclusive = NumberRangeRule.DEFAULT.maxInclusive();
         int count = NumberLengthRule.DEFAULT.uniquesExactly();

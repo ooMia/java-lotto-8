@@ -5,14 +5,13 @@ import java.util.Collections;
 import java.util.List;
 
 public class LotteryManager {
-    static final int LOTTO_PRICE = 1_000;
-    private static final Vendor vendor = new Vendor();
+    public static final int LOTTO_PRICE = 1_000;
 
     private List<Lotto> ticketsBought = List.of();
     private WinnerLotto winnerTicket;
 
     public Collection<Lotto> buyTickets(long money) {
-        this.ticketsBought = vendor.buyLotto(money);
+        this.ticketsBought = Vendor.buyLotto(money);
         return Collections.unmodifiableCollection(ticketsBought);
     }
 

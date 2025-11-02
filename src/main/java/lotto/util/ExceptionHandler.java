@@ -62,7 +62,7 @@ public class ExceptionHandler {
     private RuntimeException toBaseException(String message, Throwable cause) {
         try {
             return baseStringThrowableConstructor.newInstance(message, cause);
-        } catch ( InvocationTargetException | InstantiationException | IllegalAccessException e) {
+        } catch (InvocationTargetException | InstantiationException | IllegalAccessException e) {
             throw new IllegalArgumentException(message, e);
         }
     }
