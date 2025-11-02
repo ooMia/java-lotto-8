@@ -1,15 +1,23 @@
 package lotto.util;
 
-public final class Global {
+public interface Global {
+    Console CONSOLE = camp.nextstep.edu.missionutils.Console::readLine;
 
-    public static final Console CONSOLE = camp.nextstep.edu.missionutils.Console::readLine;
+    String ERROR_PREFIX = "[ERROR] ";
+    ExceptionHandler EXCEPTION_HANDLER = new ExceptionHandler(CONSOLE, ERROR_PREFIX);
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
-    public static final ExceptionHandler EXCEPTION_HANDLER = new ExceptionHandler(CONSOLE, ERROR_PREFIX);
+    char DEFAULT_DELIMITER = ',';
+    Tokenizer TOKENIZER = new Tokenizer(DEFAULT_DELIMITER);
 
-    private static final char DEFAULT_DELIMITER = ',';
-    public static final Tokenizer TOKENIZER = new Tokenizer(DEFAULT_DELIMITER);
+    default Console console(){
+        return CONSOLE;
+    }
 
-    private Global() {
+    default ExceptionHandler exceptionHandler(){
+        return EXCEPTION_HANDLER;
+    }
+
+    default Tokenizer tokenizer(){
+        return TOKENIZER;
     }
 }

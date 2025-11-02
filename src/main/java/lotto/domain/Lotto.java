@@ -13,8 +13,8 @@ public class Lotto {
     }
 
     private void validate() {
-        LottoRule.NumberLengthRule.DEFAULT.validate(this.numbers);
-        numbers.forEach(LottoRule.NumberRangeRule.DEFAULT::validate);
+        Vendor.NumberRangeRule.DEFAULT.validate(this.numbers);
+        Vendor.NumberLengthRule.DEFAULT.validate(this.numbers);
     }
 
     boolean contains(int number) {

@@ -13,7 +13,7 @@ class VendorTest {
 
     @BeforeEach
     void setUp() {
-        this.vendor = new Vendor(Service.LOTTO_PRICE);
+        this.vendor = new Vendor();
     }
 
     @ParameterizedTest

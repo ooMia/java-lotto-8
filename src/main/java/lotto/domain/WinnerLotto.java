@@ -1,11 +1,8 @@
 package lotto.domain;
 
-// TODO consider changing to record
-// TODO to package private
-public final class WinnerLotto {
+import lotto.domain.Vendor.NumberRangeRule;
 
-    private final Lotto lotto;
-    private final int bonusNumber;
+public record WinnerLotto(Lotto lotto, int bonusNumber) {
 
     public WinnerLotto(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;
@@ -14,8 +11,8 @@ public final class WinnerLotto {
     }
 
     private void validate() {
-        LottoRule.NumberRangeRule.DEFAULT.validate(this.bonusNumber);
-        if (this.lotto.contains(this.bonusNumber)) {
+        NumberRangeRule.DEFAULT.validate(bonusNumber);
+        if (lotto.contains(bonusNumber)) {
             throw LottoProblem.DUPLICATE_NUMBER.exception();
         }
     }

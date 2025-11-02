@@ -1,24 +1,24 @@
 package lotto.domain;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 class WinningStats {
-
+    private static final int LOTTO_PRICE = LotteryManager.LOTTO_PRICE;
     private static final int TO_PERCENTAGE = 100;
 
     private final SortedMap<Prize, Integer> prizeCount = new TreeMap<>(Prize.comparator().reversed());
     private final double profitRate;
 
-    WinningStats(List<Lotto> lottos, WinnerLotto winner) {
+    WinningStats(Collection<Lotto> tickets, WinnerLotto winner) {
         for (Prize values : Prize.values()) {
             prizeCount.put(values, 0);
         }
-        lottos.stream()
+        tickets.stream()
                 .map(winner::toPrize)
                 .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
-        this.profitRate = profitRate(totalProfit(), lottos.size());
+        this.profitRate = profitRate(totalProfit(), tickets.size());
         prizeCount.remove(Prize.MATCH_NONE);
     }
 
@@ -28,11 +28,11 @@ class WinningStats {
                 .sum();
     }
 
-    private static double profitRate(double totalProfit, int numberLottos) {
-        if (numberLottos <= 0 || Service.LOTTO_PRICE <= 0) {
+    private static double profitRate(double totalProfit, int numberTickets) {
+        if (numberTickets <= 0 || LOTTO_PRICE <= 0) {
             throw LottoProblem.PROFIT_DIV_ZERO.exception();
         }
-        return totalProfit * TO_PERCENTAGE / (numberLottos * Service.LOTTO_PRICE);
+        return totalProfit * TO_PERCENTAGE / (numberTickets * LOTTO_PRICE);
     }
 
     @Override
