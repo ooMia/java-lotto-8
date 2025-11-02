@@ -9,7 +9,9 @@ enum LottoProblem implements BaseProblem {
     DUPLICATE_NUMBER,
     NUMBERS_LENGTH_NOT_SIX,
     NOT_ENOUGH_MONEY,
-    PROFIT_DIV_ZERO;
+    PROFIT_DIV_ZERO,
+    REQUEST_EXCEED_MEMORY_LIMITATION,
+    ;
 
     @Override
     public String message() {

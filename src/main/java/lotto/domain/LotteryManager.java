@@ -11,7 +11,7 @@ public class LotteryManager {
     private List<Lotto> ticketsBought = List.of();
     private WinnerLotto winnerTicket;
 
-    public Collection<Lotto> buyTickets(int money) {
+    public Collection<Lotto> buyTickets(long money) {
         this.ticketsBought = vendor.buyLotto(money);
         return Collections.unmodifiableCollection(ticketsBought);
     }

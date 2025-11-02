@@ -8,22 +8,30 @@ import java.util.Set;
 final class Vendor {
     private static final int LOTTO_PRICE = LotteryManager.LOTTO_PRICE;
 
-    List<Lotto> buyLotto(int money) {
+    List<Lotto> buyLotto(long money) {
         validate(money);
-        int number = money / LOTTO_PRICE;
-        var res = new ArrayList<Lotto>();
-        while (res.size() < number) {
-            res.add(generateRandomLotto());
-        }
-        return res;
+        return limitedOfferOnly(money);
     }
 
-    private void validate(int money) {
+    private void validate(long money) {
         if (money < LOTTO_PRICE) {
             throw LottoProblem.NOT_ENOUGH_MONEY.exception();
         }
         if (money % LOTTO_PRICE != 0) {
             throw LottoProblem.MOD_PRICE_NOT_ZERO.exception();
+        }
+    }
+
+    private List<Lotto> limitedOfferOnly(long money){
+        try {
+            int number = Math.toIntExact(money / LOTTO_PRICE);
+            var res = new ArrayList<Lotto>(number);
+            while (res.size() < number) {
+                res.add(generateRandomLotto());
+            }
+            return res;
+        } catch (ArithmeticException | OutOfMemoryError e) {
+            throw LottoProblem.REQUEST_EXCEED_MEMORY_LIMITATION.exception();
         }
     }
 
