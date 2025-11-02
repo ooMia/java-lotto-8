@@ -7,7 +7,8 @@ public interface Global {
     Console CONSOLE = camp.nextstep.edu.missionutils.Console::readLine;
 
     String ERROR_PREFIX = "[ERROR] ";
-    ExceptionHandler EXCEPTION_HANDLER = new ExceptionHandler(CONSOLE, ERROR_PREFIX);
+    Class<? extends RuntimeException> BASE_RUNTIME_EXCEPTION = IllegalArgumentException.class;
+    ExceptionHandler EXCEPTION_HANDLER = new ExceptionHandler(BASE_RUNTIME_EXCEPTION);
 
     char DEFAULT_DELIMITER = ',';
     Tokenizer TOKENIZER = new Tokenizer(DEFAULT_DELIMITER);

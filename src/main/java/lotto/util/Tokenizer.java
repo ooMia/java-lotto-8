@@ -17,12 +17,6 @@ public final class Tokenizer {
         this.pattern = Pattern.compile(String.valueOf(delimiter));
     }
 
-    private static void validate(String input, Function<String, ?> converter) {
-        if (input == null || converter == null) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public List<String> split(String input) {
         return split(input, String::intern);
     }
@@ -36,7 +30,9 @@ public final class Tokenizer {
      * @return 변환된 객체 리스트
      */
     public <T> List<T> split(String input, Function<String, T> converter) {
-        validate(input, converter);
+        if (input == null || converter == null) {
+            throw Global.EXCEPTION_HANDLER.exception(ConsoleProblem.NULL_POINTER);
+        }
         return cleanUp(input)
                 .map(converter)
                 .toList();
