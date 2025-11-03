@@ -1,7 +1,7 @@
 package lotto;
 
 import java.util.List;
-import lotto.domain.LotteryManager;
+import lotto.domain.LottoManager;
 import lotto.util.Console;
 import lotto.util.ExceptionHandler;
 import lotto.util.Global;
@@ -13,21 +13,24 @@ class Scenario implements Runnable {
     private final ExceptionHandler handler;
     private final Tokenizer tokenizer;
 
-    Scenario(Global global) {
+    private final LottoManager manager;
+
+    Scenario(Global global, LottoManager manager) {
         this.console = global.console();
         this.handler = global.exceptionHandler();
         this.tokenizer = global.tokenizer();
+
+        this.manager = manager;
     }
 
     @Override
     public void run() {
-        var manager = new LotteryManager();
-        buyTickets(manager);
-        fetchWinner(manager);
-        printProfitStats(manager);
+        buyTickets();
+        fetchWinner();
+        printProfitStats();
     }
 
-    private void buyTickets(LotteryManager manager) {
+    private void buyTickets() {
         var tickets = handler.tryUntilValid(() -> {
             console.printLine("구입금액을 입력해 주세요.");
             var money = console.readInt();
@@ -39,7 +42,7 @@ class Scenario implements Runnable {
         console.printLine();
     }
 
-    private void fetchWinner(LotteryManager manager) {
+    private void fetchWinner() {
         var winnerTicket = handler.tryUntilValid(() -> {
             console.printLine("당첨 번호를 입력해 주세요.");
             String csvNumbers = console.readLine();
@@ -55,7 +58,7 @@ class Scenario implements Runnable {
         console.printLine();
     }
 
-    private void printProfitStats(LotteryManager manager) {
+    private void printProfitStats() {
         console.printLine("당첨 통계");
         console.printLine("---");
         console.printLine(manager.prizeStats());

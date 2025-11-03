@@ -14,8 +14,8 @@ public class Lotto {
     }
 
     private void validate() {
-        Vendor.NumberRangeRule.DEFAULT.validate(this.numbers);
-        Vendor.NumberLengthRule.DEFAULT.validate(this.numbers);
+        LottoRule.NumberRangeRule.DEFAULT.validate(this.numbers);
+        LottoRule.NumberLengthRule.DEFAULT.validate(this.numbers);
     }
 
     boolean contains(int number) {

@@ -4,7 +4,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class LotteryManager {
+public class LottoManager {
+
     public static final int LOTTO_PRICE = 1_000;
 
     private List<Lotto> ticketsBought = List.of();

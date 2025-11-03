@@ -13,14 +13,11 @@ class WinningStats {
     private final double profitRate;
 
     WinningStats(Collection<Lotto> tickets, WinnerLotto winner) {
-        for (Prize values : Prize.values()) {
-            prizeCount.put(values, 0);
+        if (winner == null) {
+            throw LottoProblem.INVALID_STATE.exception();
         }
-        tickets.stream()
-                .map(winner::toPrize)
-                .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
+        initMap(tickets, winner);
         this.profitRate = profitRate(totalProfit(), tickets.size());
-        prizeCount.remove(Prize.MATCH_NONE);
     }
 
     static double profitRate(double totalProfit, int numberTickets) {
@@ -31,6 +28,16 @@ class WinningStats {
             throw LottoProblem.INVALID_STATE.exception();
         }
         return totalProfit * TO_PERCENTAGE / (numberTickets * LOTTO_PRICE);
+    }
+
+    void initMap(Collection<Lotto> tickets, WinnerLotto winner) {
+        for (Prize values : Prize.values()) {
+            prizeCount.put(values, 0);
+        }
+        tickets.stream()
+                .map(winner::toPrize)
+                .forEach(prize -> prizeCount.put(prize, prizeCount.get(prize) + 1));
+        prizeCount.remove(Prize.MATCH_NONE);
     }
 
     private double totalProfit() {
