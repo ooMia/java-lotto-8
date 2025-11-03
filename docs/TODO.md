@@ -1,0 +1,48 @@
+# 리팩토링 개선 노트
+
+- [x] 문서 정리
+  - 각각의 스코프에 해당 클래스의 기능 정리
+- [x] 리팩토링 TODO 노트
+- [x] 전역 변수
+  - 구분자 쉼표: 번호는 쉼표(`,`)를 기준으로 구분한다.
+  - 오류 접두사: `[ERROR]`
+- [x] 도메인 정보 상수화
+  - 로또 금액 1_000: `Vendor`가 관리
+  - 로또 숫자 [1,45]: `LottoRule`이 관리
+  - 로또는 중복되지 않는 6개: `LottoRule`이 관리
+  - 보너스 번호까지하면 중복되지 않는 7개: `WinnerLotto`이 `LottoRule`을 참조하여 validate로 관리
+    (중복되지 않는 숫자 6개와 보너스 번호라는 서술이 중복 불가를 의미하는 것으로 판단)
+- [x] 재입력 필요한 상황들 정리
+  - 각 숫자가 범위에 벗어나는지
+  - 지불하는 금액이 양수인지
+  - **지불하는 금액이 0원인 경우**
+    **고민해봤는데 `1,000원 단위로 입력`하라는 서술은 1000의 배수를 의미하는 것 같다**
+  - 지불하는 금액이 단위 금액의 정수배인지
+- [x] 모든 예외 ExceptionHandler로 통일
+  - 예외 상황에 `IllegalArgumentException` 반환
+  - `[ERROR]`로 시작하는 에러 메시지 출력
+- [x] `domain` 패키지로 모듈화
+
+## Domain 리팩토링
+
+- [x] `WinnerLotto.toPrize()`
+  - 이에 대한 파생으로 `Lotto.countMatches()` 생성
+- [x] 레이어 안정화
+- [x] `domain.StringTemplate` 문자열 정리
+- [x] `Prize.comparator` Enum ordinal에 의존하지 않는 정렬 기준
+- [x] `WinningStats` profitRate 계산 과정
+- [x] `Lotto` minor fixes
+  - lotto constructor visibility
+  - validation for field with instance method
+  - clean up unused enums
+- [x] `Prize` visibility
+- [x] `Lotto` shortened forEach
+- [x] `LottoProblem` typo
+  - [x] `Scenario`를 만들어 특정한 작업을 순차적으로 실행하도록 만든다.
+    - `View`는 별도로 만들지 않아요.
+    - 각각은 내부 StringTemplate에 의해 가변적인 형태가 나타날 수 있고,
+    - 상위 호출자는 그것을 변경할 권한이 없어요
+    - 출력 방식이 바뀌어야 한다면, 그 방식에 대한 정의를 도메인에 전달해서 문자열을 받으면 될 뿐이에요.
+  - `Lotto` 그리고 `WinnerLotto` 등을 노출할지 고민을 좀 했는데, 실물을 받는다는 차원에서 그냥 허용했어요
+- [ ] 사용자가 가이드에 따라 알맞게 입력을 수정해볼 수 있도록 메세지를 구체화한다
+- [x] 입력 안내 문구가 입력 실패 시에 함께 여러 번 출력되도록 한다.
