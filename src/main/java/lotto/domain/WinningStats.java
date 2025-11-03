@@ -5,7 +5,8 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 class WinningStats {
-    private static final int LOTTO_PRICE = LotteryManager.LOTTO_PRICE;
+
+    private static final int LOTTO_PRICE = LottoManager.LOTTO_PRICE;
     private static final int TO_PERCENTAGE = 100;
 
     private final SortedMap<Prize, Integer> prizeCount = new TreeMap<>(Prize.comparator().reversed());

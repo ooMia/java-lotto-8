@@ -3,10 +3,10 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 final class Vendor {
-    private static final int LOTTO_PRICE = LotteryManager.LOTTO_PRICE;
+
+    private static final int LOTTO_PRICE = LottoManager.LOTTO_PRICE;
 
     private Vendor() {
     }
@@ -39,38 +39,10 @@ final class Vendor {
     }
 
     private static Lotto generateRandomLotto() {
-        int startInclusive = NumberRangeRule.DEFAULT.minInclusive();
-        int endInclusive = NumberRangeRule.DEFAULT.maxInclusive();
-        int count = NumberLengthRule.DEFAULT.uniquesExactly();
+        int startInclusive = LottoRule.NumberRangeRule.DEFAULT.minInclusive();
+        int endInclusive = LottoRule.NumberRangeRule.DEFAULT.maxInclusive();
+        int count = LottoRule.NumberLengthRule.DEFAULT.uniquesExactly();
         return new Lotto(Randoms.pickUniqueNumbersInRange(startInclusive, endInclusive, count));
     }
 
-    record NumberRangeRule(int minInclusive, int maxInclusive) {
-        static final NumberRangeRule DEFAULT = new NumberRangeRule(1, 45);
-
-        void validate(List<Integer> numbers) {
-            numbers.forEach(this::validate);
-        }
-
-        void validate(int number) {
-            if (number < minInclusive || maxInclusive < number) {
-                throw LottoProblem.NUMBER_OUT_OF_RANGE.exception();
-            }
-        }
-    }
-
-    record NumberLengthRule(int uniquesExactly) {
-        static final NumberLengthRule DEFAULT = new NumberLengthRule(6);
-
-        void validate(List<Integer> numbers) {
-            if (numbers.size() != uniquesExactly) {
-                throw LottoProblem.NUMBERS_LENGTH_NOT_SIX.exception();
-            }
-
-            Set<Integer> uniques = Set.copyOf(numbers);
-            if (uniques.size() != uniquesExactly) {
-                throw LottoProblem.DUPLICATE_NUMBER.exception();
-            }
-        }
-    }
 }

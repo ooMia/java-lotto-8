@@ -29,5 +29,4 @@ public interface Console {
     default void printLine() {
         System.out.println();
     }
-
 }

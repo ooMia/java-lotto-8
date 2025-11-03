@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Locale;
 
 interface Presentation {
+
     Presentation INSTANCE = new Presentation() {
     };
 

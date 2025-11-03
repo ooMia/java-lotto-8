@@ -8,6 +8,7 @@ import lotto.util.Global;
 import lotto.util.Tokenizer;
 
 class Scenario implements Runnable {
+
     private final Console console;
     private final ExceptionHandler handler;
     private final Tokenizer tokenizer;

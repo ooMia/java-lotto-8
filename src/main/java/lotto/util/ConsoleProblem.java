@@ -1,6 +1,7 @@
 package lotto.util;
 
 public enum ConsoleProblem implements BaseProblem {
+
     PARSE_NUMBER_FAILED,
     NULL_POINTER;
 

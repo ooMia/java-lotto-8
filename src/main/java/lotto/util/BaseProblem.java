@@ -1,6 +1,7 @@
 package lotto.util;
 
 public interface BaseProblem {
+
     String message();
 
     default RuntimeException exception() {
