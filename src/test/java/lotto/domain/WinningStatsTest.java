@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.TestUtil;
 import org.junit.jupiter.api.Test;
 
 class WinningStatsTest {
@@ -38,5 +39,30 @@ class WinningStatsTest {
                 "총 수익률은 62.5%입니다.");
 
         assertThat(stats.toString()).contains(expected);
+    }
+
+
+    @Test
+    void testProfitRate() {
+        // (2_000_000_000 * 2) / (7_458 * 1_000) * 100 = 53633.68
+        double totalProfit = 2_000_000_000L * 2;
+        int numberTickets = 7_458;
+
+        String expected = "53633.7%";
+        double actualNumber = WinningStats.profitRate(totalProfit, numberTickets);
+        String actual = Presentation.INSTANCE.statProfitRate(actualNumber);
+        assertThat(actual).contains(expected);
+    }
+
+    @Test
+    void testProfitRate_보유한_티켓이_없으면_오류() {
+        TestUtil.GLOBAL.assertThatThrownBy(() -> WinningStats.profitRate(123, 0))
+                .hasMessageContaining("PROFIT_DIV_ZERO");
+    }
+
+    @Test
+    void testProfitRate_보유한_티켓이_음수라면_오류() {
+        TestUtil.GLOBAL.assertThatThrownBy(() -> WinningStats.profitRate(123, -1))
+                .hasMessageContaining("INVALID_STATE");
     }
 }

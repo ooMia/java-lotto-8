@@ -2,7 +2,10 @@ package lotto.domain;
 
 import lotto.domain.Vendor.NumberRangeRule;
 
-public record WinnerLotto(Lotto lotto, int bonusNumber) {
+public class WinnerLotto {
+
+    private final Lotto lotto;
+    private final int bonusNumber;
 
     public WinnerLotto(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;

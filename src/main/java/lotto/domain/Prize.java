@@ -22,7 +22,7 @@ enum Prize {
         }
     }
 
-    public final int money;
+    final int money;
     final int matches;
     final boolean isBonusMatch;
 

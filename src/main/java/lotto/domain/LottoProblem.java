@@ -11,7 +11,7 @@ enum LottoProblem implements BaseProblem {
     NOT_ENOUGH_MONEY,
     PROFIT_DIV_ZERO,
     REQUEST_EXCEED_MEMORY_LIMITATION,
-    ;
+    INVALID_STATE;
 
     @Override
     public String message() {

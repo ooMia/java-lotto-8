@@ -6,4 +6,8 @@ public interface BaseProblem {
     default RuntimeException exception() {
         return Global.EXCEPTION_HANDLER.exception(this);
     }
+
+    default RuntimeException exception(Throwable cause) {
+        return Global.EXCEPTION_HANDLER.exception(this, cause);
+    }
 }

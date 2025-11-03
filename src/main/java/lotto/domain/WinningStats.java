@@ -22,9 +22,12 @@ class WinningStats {
         prizeCount.remove(Prize.MATCH_NONE);
     }
 
-    private static double profitRate(double totalProfit, int numberTickets) {
-        if (numberTickets <= 0 || LOTTO_PRICE <= 0) {
+    static double profitRate(double totalProfit, int numberTickets) {
+        if (numberTickets == 0 || LOTTO_PRICE == 0) {
             throw LottoProblem.PROFIT_DIV_ZERO.exception();
+        }
+        if (numberTickets < 0 || LOTTO_PRICE < 0) {
+            throw LottoProblem.INVALID_STATE.exception();
         }
         return totalProfit * TO_PERCENTAGE / (numberTickets * LOTTO_PRICE);
     }
